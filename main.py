@@ -24,6 +24,7 @@ def scale_img(image, scale):
     h = image.get_height()
     return pygame.transform.scale(image, (w * scale, h * scale))
 
+
 # load weapon images
 bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 arrow_image = scale_img(pygame.image.load("assets/images/weapons/arrow.png").convert_alpha(), constants.WEAPON_SCALE)
@@ -47,14 +48,20 @@ for mob in mob_types:
     mob_animations.append(animation_list)
 
 # create player
-player = Character(100, 100, mob_animations, 0)
+player = Character(100, 100, 100, mob_animations, 0)
+
+# create enemy
+enemy = Character(200, 200, 100, mob_animations, 1)
 
 # create player's weapon
 bow = Weapon(bow_image, arrow_image)
 
-# create sprite groups
-arrow_group =  pygame.sprite.Group()
+# create empty enemy list
+enemy_list = []
+enemy_list.append(enemy)
 
+# create sprite groups
+arrow_group = pygame.sprite.Group()
 
 # main game loop
 run = True
@@ -82,14 +89,18 @@ while run:
     player.move(dx, dy)
 
     # update player
+    for enemy in enemy_list:
+        enemy.update()
     player.update()
     arrow = bow.update(player)
     if arrow:
         arrow_group.add(arrow)
     for arrow in arrow_group:
-        arrow.update()
+        arrow.update(enemy_list)
 
     # draw player on screen
+    for enemy in enemy_list:
+        enemy.draw(screen)
     player.draw(screen)
     bow.draw(screen)
     for arrow in arrow_group:
