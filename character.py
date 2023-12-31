@@ -8,6 +8,7 @@ import math
 class Character():
     def __init__(self, x, y, health, mob_animations, character_type):
         self.character_type = character_type
+        self.score = 0
         self.flip = False
         self.frame_index = 0
         self.action = 0  # 0: idle, 1: run
