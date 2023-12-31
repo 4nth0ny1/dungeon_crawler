@@ -58,6 +58,10 @@ class Arrow(pygame.sprite.Sprite):
         self.dy = -(math.sin(math.radians(self.angle)) * constants.ARROW_SPEED)  # pygame requires negative y coor
 
     def update(self, enemy_list):
+        # reset variables
+        damage = 0
+        damage_pos = None
+
         # reposition based on speed
         self.rect.x += self.dx
         self.rect.y += self.dy
@@ -71,9 +75,12 @@ class Arrow(pygame.sprite.Sprite):
         for enemy in enemy_list:
             if enemy.rect.colliderect(self.rect) and enemy.alive:
                 damage = 10 + random.randint(-5, 5)
+                damage_pos = enemy.rect
                 enemy.health -= damage
                 self.kill()
                 break
+
+        return damage, damage_pos
 
     def draw(self, surface):
         surface.blit(self.image, (
