@@ -19,7 +19,7 @@ class Character():
         self.alive = True
 
         self.image = self.animation_list[self.action][self.frame_index]
-        self.rect = pygame.Rect(0, 0, 40, 40)
+        self.rect = pygame.Rect(0, 0, constants.TILE_SIZE, 40)
         self.rect.center = (x, y)
 
     def move(self, dx, dy):

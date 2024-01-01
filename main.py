@@ -3,6 +3,7 @@ import constants
 from character import Character
 from weapon import Weapon
 from items import Item
+from world import World
 
 pygame.init()
 
@@ -43,10 +44,16 @@ for x in range(4):
 # potion image
 red_potion = scale_img(pygame.image.load("assets/images/items/potion_red.png").convert_alpha(), constants.POTION_SCALE)
 
-
 # load weapon images
 bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
 arrow_image = scale_img(pygame.image.load("assets/images/weapons/arrow.png").convert_alpha(), constants.WEAPON_SCALE)
+
+# load tilemap images
+tile_list = []
+for x in range(constants.TILE_TYPES):
+    tile_image = pygame.image.load(f"assets/images/tiles/{x}.png").convert_alpha()
+    tile_image = pygame.transform.scale(tile_image, (constants.TILE_SIZE, constants.TILE_SIZE))
+    tile_list.append(tile_image)
 
 # load character images
 mob_animations = []
@@ -71,6 +78,18 @@ for mob in mob_types:
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
+
+
+world_data = [
+    [7, 7, 7, 7, 7, 7],
+    [7, 0, 1, 2, 3, 7],
+    [7, 3, 4, 5, 5, 7],
+    [7, 6, 6, 6, 0, 7],
+    [7, 0, 0, 0, 0, 7],
+]
+
+world = World()
+world.process_data(world_data, tile_list)
 
 
 # function for displaying game info
@@ -177,6 +196,7 @@ while run:
     item_group.update(player)
 
     # draw player on screen
+    world.draw(screen)
     for enemy in enemy_list:
         enemy.draw(screen)
     player.draw(screen)
@@ -187,7 +207,6 @@ while run:
     item_group.draw(screen)
     draw_info()
     score_coin.draw(screen)
-
 
     # event handler
     for event in pygame.event.get():
