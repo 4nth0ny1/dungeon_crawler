@@ -18,7 +18,7 @@ pygame.display.set_caption("Dungeon Crawler")
 clock = pygame.time.Clock()
 
 # define game variables
-level = 4
+level = 3
 start_game = False
 pause_game = False
 start_intro = False
