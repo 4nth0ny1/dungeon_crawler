@@ -4,6 +4,7 @@ import random
 import constants
 
 
+
 class Weapon():
     def __init__(self, image, arrow_image):
         self.original_image = image
@@ -79,12 +80,20 @@ class Arrow(pygame.sprite.Sprite):
         # check collision of arrow and enemy
         for enemy in enemy_list:
             if enemy.rect.colliderect(self.rect) and enemy.alive:
-                damage = 10 + random.randint(-5, 5)
-                damage_pos = enemy.rect
-                enemy.health -= damage
-                enemy.hit = True
-                self.kill()
-                break
+                if constants.RING_OF_POWER:
+                    damage = 100 + random.randint(-5, 5)
+                    damage_pos = enemy.rect
+                    enemy.health -= damage
+                    enemy.hit = True
+                    self.kill()
+                    break
+                else:
+                    damage = 10 + random.randint(-5, 5)
+                    damage_pos = enemy.rect
+                    enemy.health -= damage
+                    enemy.hit = True
+                    self.kill()
+                    break
 
         return damage, damage_pos
 

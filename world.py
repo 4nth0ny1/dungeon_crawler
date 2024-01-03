@@ -57,6 +57,10 @@ class World():
                     enemy = Character(image_x, image_y, 100, mob_animations, 1, False, 1)
                     self.character_list.append(enemy)
                     tile_data[0] = tile_list[0]
+                elif tile == 22:
+                    red_ring = Item(image_x, image_y, 2, [item_images[2]])
+                    self.item_list.append(red_ring)
+                    tile_data[0] = tile_list[0]
 
                 # add image data to main tiles list
                 if tile >= 0:

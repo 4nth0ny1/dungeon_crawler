@@ -44,7 +44,7 @@ def scale_img(image, scale):
 # load music and sounds
 pygame.mixer.music.load("assets/audio/music.wav")
 pygame.mixer.music.set_volume(0.3)
-pygame.mixer.music.play(-1, 0.0, 5000)
+# pygame.mixer.music.play(-1, 0.0, 5000)
 shot_fx = pygame.mixer.Sound("assets/audio/arrow_shot.mp3")
 shot_fx.set_volume(0.5)
 hit_fx = pygame.mixer.Sound("assets/audio/arrow_hit.wav")
@@ -75,9 +75,13 @@ for x in range(4):
 # potion image
 red_potion = scale_img(pygame.image.load("assets/images/items/potion_red.png").convert_alpha(), constants.POTION_SCALE)
 
+# red ring image
+red_ring = scale_img(pygame.image.load("assets/images/items/red_ring.png").convert_alpha(), constants.RING_SCALE)
+
 item_images = []
 item_images.append(coin_images)
 item_images.append(red_potion)
+item_images.append(red_ring)
 
 # load weapon images
 bow_image = scale_img(pygame.image.load("assets/images/weapons/bow.png").convert_alpha(), constants.WEAPON_SCALE)
