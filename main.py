@@ -94,7 +94,7 @@ for x in range(constants.TILE_TYPES):
 
 # load character images
 mob_animations = []
-mob_types = ["elf", "imp", "skeleton", "goblin", "muddy", "tiny_zombie", "big_demon"]
+mob_types = ["elf", "fire_guy", "imp", "skeleton", "goblin", "muddy", "tiny_zombie", "big_demon"]
 
 animation_types = ["idle", "run"]
 for mob in mob_types:

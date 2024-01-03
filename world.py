@@ -53,6 +53,10 @@ class World():
                     self.obstacle_tiles.append(tile_data)
                 elif tile == 19:
                     self.obstacle_tiles.append(tile_data)
+                elif tile == 21:
+                    enemy = Character(image_x, image_y, 100, mob_animations, 1, False, 1)
+                    self.character_list.append(enemy)
+                    tile_data[0] = tile_list[0]
 
                 # add image data to main tiles list
                 if tile >= 0:
